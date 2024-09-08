@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SortMaster</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to SortMaster!</h1>
+            <p>We understand how cluttered your files can get. Let us help you organize them effortlessly.</p>
+        </header>
+        
+        <main>
+            <form method="post">
+                <label for="path">Enter the directory path:</label>
+                <input type="text" id="path" name="path" required>
+                <button type="submit">Organize Files</button>
+            </form>
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+            {% if message %}
+                <p class="success">{{ message }}</p>
+            {% endif %}
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 SortMaster. All rights reserved.</p>
+            <p>Developed by <a id="github-link" href="https://github.com/parvathamramcharan" target="_blank">ramcharan7251</a></p>
+        </footer>
+    </div>
+
+    <!-- Toast message -->
+    <div id="toast" class="toast">You will be redirected to GitHub.</div>
+
+    <script>
+        document.getElementById('github-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            // Show the toast message
+            var toast = document.getElementById('toast');
+            toast.className = "toast show";
+            
+            // Redirect after showing the toast
+            setTimeout(function() {
+                window.location.href = event.target.href;
+            }, 1000); // Delay redirect to allow toast to be visible
+        });
+    </script>
+</body>
+</html>
